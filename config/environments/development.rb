@@ -34,6 +34,9 @@ Rails.application.configure do
   # Using the local settings for Active Storage
   config.active_storage.service = :local
 
+  # Using the Amazon S3 settings for Active Storage
+  config.active_storage.service = :amazon
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
