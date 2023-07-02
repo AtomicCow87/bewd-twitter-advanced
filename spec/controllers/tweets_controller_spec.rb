@@ -65,6 +65,9 @@ RSpec.describe TweetsController, type: :controller do
       
       # check that the user has 30 tweets, again
       expect(user.tweets.count).to eq(30)
+
+      # check that the response is correct
+      expect(JSON.parse(response.body)['error']['message']).to eq('Rate limit exceeded (30 tweets/hour). Please try again later.')
     end
   end
 
