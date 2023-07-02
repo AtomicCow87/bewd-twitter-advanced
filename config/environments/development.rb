@@ -31,9 +31,6 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  # Using the local settings for Active Storage
-  config.active_storage.service = :local
-
   # Using the Amazon S3 settings for Active Storage
   config.active_storage.service = :amazon
 
