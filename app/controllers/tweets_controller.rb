@@ -8,7 +8,6 @@ class TweetsController < ApplicationController
     token = cookies.signed[:twitter_session_token]
     session = Session.find_by(token: token)
     user = session.user
-    @tweet = user.tweets.new(tweet_params)
 
     # check rate limit
     # user.tweets count in the past 60 minutes should be less than 30
