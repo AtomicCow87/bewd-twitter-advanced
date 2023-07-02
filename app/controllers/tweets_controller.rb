@@ -12,19 +12,19 @@ class TweetsController < ApplicationController
 
     # check rate limit
     # user.tweets count in the past 60 minutes should be less than 30
-    if user.tweets.where('created_at > ?', Time.now - 60.minutes).count < 30
-      @tweet = user.tweets.new(tweet_params)
-
-      if @tweet.save
-        TweetMailer.notify(@tweet).deliver!
-        render 'tweets/create', status: 201
-      end
-    else
+    if user.tweets.where('created_at > ?', Time.now - 60.minutes).count >= 30
       return render json: {
         error: {
           message: 'Rate limit exceeded (30 tweets/hour). Please try again later.'
         }
       }
+    end
+
+    @tweet = user.tweets.new(tweet_params)
+
+    if @tweet.save
+      TweetMailer.notify(@tweet).deliver!
+      render 'tweets/create', status: 201
     end
   end
 
